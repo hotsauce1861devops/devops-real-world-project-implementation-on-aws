@@ -137,10 +137,17 @@ Docker performs the following steps behind the scenes:
    * You can confirm this with:
 
 ```bash
-# docker ps command
+docker ps command
 docker ps -a
 ```
+```bash
 
+#| # Command       | # Meaning            |
+| ------------- | ------------------ |
+| docker ps     | Running containers |
+| docker ps -a  | All containers     |
+| docker ps -q  | Only container IDs |
+| docker ps -aq | All container IDs  |
 ---
 
 #### Before & After
@@ -155,7 +162,28 @@ docker run hello-world
 # After running (image now appears)
 docker images
 docker ps -a
-```
+docker images -q #shows the image ID
+
+```bash
+#Show Running Container Names Only###
+Docker supports Go templates with --format.
+
+{{.Names}} is a template field.
+
+
+docker ps --format "{{.Names}}"
+#  This prints something like:
+#       web-app
+#       redis-db
+#       nginx-container
+
+Other useful ones:
+| #Field         | Meaning          |
+| ------------- | ---------------- |
+| `{{.ID}}`     | Container ID     |
+| `{{.Image}}`  | Image name       |
+| `{{.Status}}` | Running / Exited |
+| `{{.Ports}}`  | Exposed ports    |
 
 ---
 
@@ -166,6 +194,8 @@ docker ps -a
 docker rm $(docker ps -aq)
 
 # Remove the image
+docker rmi $(docker images -q) #pulls the single image number to be deleted
+#       OR
 docker rmi hello-world
 ```
 

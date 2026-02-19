@@ -101,15 +101,15 @@ docker buildx ls
 
 ```bash
 # ---- CONFIG (edit these) ----
-export DOCKERHUB_USER="your-dockerhub-username"     # CHANGE
+export DOCKERHUB_USER="hotsauce1861"     # CHANGE
 export DH_REPO="retail-ui-multiarch"             # repo name under your namespace
 export TAG="1.0.0"                                  # image tag
 
 
 # UPDATED TO MY ENVIRONMENT
-export DOCKERHUB_USER="stacksimplify"     # CHANGE
+export DOCKERHUB_USER="hotsauce1861"     # CHANGE
 export DH_REPO="retail-ui-multiarch"             # repo name under your namespace
-export TAG="1.0.0"                                  # image tag
+export TAG="2.0.0"          # FOR V2  # image tag
 
 # ---- DERIVED ----
 export IMAGE="${DOCKERHUB_USER}/${DH_REPO}:${TAG}"
@@ -124,6 +124,7 @@ docker login -u "${DOCKERHUB_USER}"
 ## Step-08: Use **your** Dockerfile (Retail Store UI)
 ```bash
 # Create a Folder
+cd ~ # go to home directory
 mkdir demo-multiarch
 cd demo-multiarch
 
@@ -266,6 +267,7 @@ docker ps
 
 # Run Docker Container using new Docker Image 
 docker run --name myapp1-amd64 -p 8888:8080 -d ${IMAGE}
+docker run --name myapp2-amd64-app -p 8890:8080 -d ${IMAGE}
 
 # List Docker Images
 docker images
@@ -309,6 +311,9 @@ docker run hello-world
 
 ### Step-12-02: Run and test the containers
 ```bash
+# Pull for the multiplatform docker
+docker pull hotsauce1861/retail-ui-multiarch:1.0.0
+
 # List Docker Containers
 docker ps
 

@@ -53,13 +53,13 @@ mkdir demo-docker-build
 cd demo-docker-build
 
 # Download the Application Source
-wget https://github.com/aws-containers/retail-store-sample-app/archive/refs/tags/v1.2.4.zip
+wget https://github.com/aws-containers/retail-store-sample-app/archive/refs/tags/v1.4.0.zip
 
 # Unzip Application Source
-unzip v1.2.4.zip
+unzip v1.4.0.zip
 
 # Make change to file
-cd /home/ec2-user/demo-docker-build/retail-store-sample-app-1.2.4/src/ui/src/main/resources/templates
+cd /home/ec2-user/demo-docker-build/retail-store-sample-app-1.4.0/src/ui/src/main/resources/templates
 File name: home.html
 We are making a change for UI stating V2 at line 
 
@@ -79,7 +79,7 @@ ls -lrt
 sed -i 's/Secret Shop<\/span>/Secret Shop - V2 Version<\/span>/' home.html
 
 # Verify It Worked:
-grep 'Secret Shop' home.html
+rg 'Secret Shop' home.html
 
 ```
 
@@ -91,7 +91,23 @@ grep 'Secret Shop' home.html
 # Change Directory to UI Source folder
 cd /home/ec2-user/demo-docker-build/retail-store-sample-app-1.2.4/src/ui
 cat Dockerfile
-```
+```Bash
+
+#What ls -lrta Means###
+
+ls = list files
+    #The flags:
+
+-l → long format (detailed view)
+-r → reverse order
+-t → sort by modification time
+-a → show hidden files (like .gitignore)
+####So:
+Show all files (including hidden), detailed view, sorted by time (oldest first because of -r).
+
+#Easier human readable
+ls -lah #Human readable sizes, Hidden files, Cleaner formatting
+
 ### Dockerfile for UI Microservice
 ```dockerfile
 # Build Stage

@@ -160,8 +160,12 @@ cd retail-store-sample-app-1.2.4/src/ui
 ls Dockerfile
 cat Dockerfile
 
+#clear cache and see the time it takes for a fresh build
+docker builder prune --all -f
+
 # Build Docker Image
 docker build -t retail-ui:9.0.0 .
+#  "." for where the Dockerfile is located
 ```
 
 > Tag your image as needed (`retail-ui` is just an example)
@@ -276,8 +280,8 @@ This shows your final image is production-optimized.
 ## Step-08: Cleanup
 
 ```bash
-docker stop retail-ui
-docker rm retail-ui
+docker stop myapp1-v9
+docker rm myapp1-v9
 docker rmi retail-ui:9.0.0
 ```
 

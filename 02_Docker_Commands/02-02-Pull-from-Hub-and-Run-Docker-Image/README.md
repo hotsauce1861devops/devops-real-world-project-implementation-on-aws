@@ -102,6 +102,19 @@ You can connect to the terminal of a running container to inspect or debug it:
 # Connect to the container's terminal
 docker exec -it <CONTAINER-NAME> /bin/sh
 
+#| Part           | Meaning                      |
+| -------------- | ---------------------------- |
+| docker exec    | Run command inside container |
+| -i             | Interactive keeps STDIN open so you can type commands. 
+| -t             | gives you a proper terminal interface Terminal 
+| -it            | interactive terminal session inside the container.
+| container-name | Target container             |
+| /bin/sh        | Start shell inside           |
+
+Linux Host
+ └── Docker Engine
+      └── Container (myapp1)
+
 # Example:
 docker exec -it myapp1 /bin/sh
 
@@ -182,7 +195,11 @@ docker rm myapp1
 
 # Or stop and remove the container in one command
 docker rm -f <CONTAINER-NAME>
-docker rm -f myapp1
+docker rm -f myapp1 #Force remove, Automatically stops container, Then deletes it
+
+
+
+
 ```
 
 ---
